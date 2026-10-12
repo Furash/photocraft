@@ -6148,10 +6148,7 @@ mod tests {
         assert!(brush_tip_centre(Tool::Healing, true, false));
         assert!(!brush_tip_centre(Tool::Healing, false, false));
         assert!(brush_tip_centre(Tool::CloneStamp, false, true));
-        assert!(
-            !brush_tip_centre(Tool::PatternStamp, true, false),
-            "Pattern Stamp keeps the brush cursor; Option does not switch it to a clone-source mark"
-        );
+        assert!(!brush_tip_centre(Tool::PatternStamp, true, false), "Pattern Stamp keeps the brush cursor; Option does not switch it to a clone-source mark");
         assert!(!brush_tip_centre(Tool::QuickSelection, false, true));
         assert!(brush_tip_centre(Tool::BackgroundEraser, false, false));
     }
