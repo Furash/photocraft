@@ -502,7 +502,12 @@ mod tests {
             vec![
                 ev(egui::TouchPhase::Start, force),
                 egui::Event::PointerMoved(egui::pos2(50.0, 50.0)),
-                egui::Event::PointerButton { pos: egui::pos2(50.0, 50.0), button: egui::PointerButton::Primary, pressed: true, modifiers: egui::Modifiers::NONE },
+                egui::Event::PointerButton {
+                    pos: egui::pos2(50.0, 50.0),
+                    button: egui::PointerButton::Primary,
+                    pressed: true,
+                    modifiers: egui::Modifiers::NONE,
+                },
             ],
         ));
         for t in [0.4, 0.7, 1.0, 1.3] {
@@ -510,7 +515,11 @@ mod tests {
         }
         for (time, mut events) in frames {
             // egui-winit emits the touch and its emulated pointer events together.
-            let mut raw = egui::RawInput { time: Some(time), screen_rect: Some(egui::Rect::from_min_size(egui::Pos2::ZERO, egui::vec2(200.0, 200.0))), ..Default::default() };
+            let mut raw = egui::RawInput {
+                time: Some(time),
+                screen_rect: Some(egui::Rect::from_min_size(egui::Pos2::ZERO, egui::vec2(200.0, 200.0))),
+                ..Default::default()
+            };
             raw.events.append(&mut events);
             let pen = contacts.observe(&raw.events);
             pen_hold_is_no_right_click(&ctx, pen);
